@@ -17,8 +17,8 @@ for x in h.headers:
     print("\t ", x, ":", h.headers[x])
 print("**********")
 # This will modify the headers user-agent
-headers={'User-Agent' :'iphone 8'}
+headers={'User-Agent' :'Mobile'}
 # Test it on an external site
-url2 = 'http://httpbin.org/headers'
+url2 = 'http://172.18.58.238/headers.php'
 rh = requests.get(url2, headers=headers)
 print(rh.text)
