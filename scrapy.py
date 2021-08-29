@@ -1,14 +1,15 @@
-#Import Module
+# Import Module
 import scrapy
+
 
 # Create New Spider
 class NewSpider(scrapy.Spider):
-    #Spider Name
+    # Spider Name
     name = "new_spider"
-    #Target Website
-    start_urls = ['http:']
+    # Target Website
+    start_urls = ['http://172.18.58.238/index.php']
 
-    #Define parser
+    # Define parser
     def parse(self, response):
         xpath_selector = '//img'
         for x in response.xpath(xpath_selector):
@@ -17,11 +18,11 @@ class NewSpider(scrapy.Spider):
                 'Image Link': x.xpath(newsel).extract_first(),
             }
 
-        #To recurse next page
+        # To recurse next page
         Page_selector = '.next a ::atr(href)'
         next_page = response.css(Page_selector).extract_first()
         if next_page:
-                yield scrapy.Request(
-                    response.urljoin(next_page),
-                    callback=self.parse
-                )
+            yield scrapy.Request(
+                response.urljoin(next_page),
+                callback=self.parse
+            )
