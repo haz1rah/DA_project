@@ -11,7 +11,7 @@ print("\t *", r.status_code)
 # This will just get just the headers
 h = requests.head(url)
 print("Header:")
-print("**********")
+print(h.headers)
 # To print line by line
 for x in h.headers:
     print("\t ", x, ":", h.headers[x])
@@ -22,3 +22,6 @@ headers={'User-Agent' :'Mobile'}
 url2 = 'http://172.18.58.238/headers.php'
 rh = requests.get(url2, headers=headers)
 print(rh.text)
+
+print('Status Code: ')
+print(rh.status_code)
